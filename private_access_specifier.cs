@@ -1,25 +1,28 @@
 ﻿using System;
 namespace private_access_specifier
 {
-    class Program
+    class PrivateTest
     {
         private string name = "Shantosh Kumar";
         private void Msg(string msg)
         {
             Console.WriteLine("Hello " + msg);
         }
+    }
+    class Program
+    {
         static void Main(string[] args)
         {
-            Program program = new Program();
+            PrivateTest privateTest = new PrivateTest();
             // Accessing private variable  
-            Console.WriteLine("Hello " + program.name);
+            Console.WriteLine("Hello " + privateTest.name);
             // Accessing private function  
-            program.Msg("Peter Decosta");
+            privateTest.Msg("Peter Decosta");
         }
     }
 }
 
 /*Output:
 
-Hello Shantosh Kumar
-Hello Peter Decosta*/
+Compile time error
+'PrivateTest.name' is inaccessible due to its protection level.*/
