@@ -6,33 +6,46 @@ using System.Threading.Tasks;
 
 namespace interface_1
 {
-    public interface drawable
+    interface bank
     {
-        void draw();
+        string deposit(int actno, int amt);
+        string withdraw(int actno, int amt);
     }
-    public class reactangle:drawable
+    class account
     {
-        public void draw()
+        public int actno;
+        public int bal = 1000;
+        public string showbalance()
         {
-            Console.WriteLine("drawing rectangle...");
+            return "bal is " + bal;
         }
     }
-    public class circle : drawable
+    class saving : account, bank
     {
-        public void draw()
+        public string deposit(int actno,int amt)
         {
-            Console.WriteLine("drawing circle...");
+            this.actno = actno;
+            bal = bal + amt;
+            return "deposited successfully successfully ,bal is " + bal;
+        }
+        public string withdraw(int actno, int amt)
+        {
+            this.actno = actno;
+            bal = bal - amt;
+            return "withdraw successfully ,bal is " + bal;
         }
     }
-
+    
     class Program
     {
         static void Main(string[] args)
         {
-            drawable d = new reactangle();
-            d.draw();
-            drawable d2 = new circle();
-            d2.draw();
+            saving b = new saving();
+            string str = b.deposit(1, 2564);
+            Console.WriteLine(str);
+            str = b.withdraw(1, 600);
+            Console.WriteLine(str);
+            Console.WriteLine(b.showbalance);
         }
     }
 }
